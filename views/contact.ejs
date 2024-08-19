@@ -1,0 +1,64 @@
+<iv class="container flex justify-center items-center min-h-screen">
+    <div class="row flex justify-center">
+        <div class="col-md-8 w-full max-w-4xl mt-8">
+            <a class="m-20" href="/contact/add">
+                <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 m-20">Tambah Data Contact </span>
+            </a>
+            <% if (msg.length !== 0) { %>
+                <div class="flex items-center p-4 mb-4 text-sm mt-3 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Info</span>
+                    <div>
+                      <span class="font-medium">Success alert!</span> <%= msg %>
+                    </div>
+                  </div>
+            <% } %>
+            
+            
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg m-10 ">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">No</th>
+                            <th scope="col" class="px-6 py-3">Name</th>
+                            <th scope="col" class="px-6 py-3">No Contact</th>
+                            <th scope="col" class="px-6 py-3">Email</th>
+                            <th scope="col" class="px-6 py-3">Aksi</th>
+    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (contact.length === 0) { %>
+                            <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+                                <span class="font-medium">Info alert!</span> Data Kontak masi kosong
+                              </div>
+                        <% } else { %>
+                        <% contact.forEach((data,i) => { i++%>
+                            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                <!-- <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Apple MacBook Pro 17"</th> -->
+                                <td class="px-6 py-4"><%= i++ %></td>
+                                <td class="px-6 py-4"><%= data.nama %></td>
+                                <td class="px-6 py-4"><%= data.noHp %></td>
+                                <td class="px-6 py-4"><%= data.email %></td>
+                                <td class="">
+                                    <a href="/contact/<%= data.nama %>">
+                                        <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Detail</span>
+                                    </a>
+                                </td>
+                                <td class="">
+                                    <a onclick="return confirm('yakin?')" href="/contact/delete/<%= data.nama %>">
+                                        <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Hapus</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+d
